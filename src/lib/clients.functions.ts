@@ -142,5 +142,5 @@ export const getAgentView = createServerFn({ method: "GET" })
       .order("arrival_time", { ascending: true, nullsFirst: false });
 
     if (clErr) throw new Error(clErr.message);
-    return { country, clients: clients ?? [] };
+    return { country: country as { id: string; name: string } | null, clients: (clients ?? []) as ClientRow[] };
   });
