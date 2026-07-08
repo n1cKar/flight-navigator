@@ -30,19 +30,41 @@ export const Route = createFileRoute("/agent/$token")({
   ),
 });
 
+type Client = {
+  id: string;
+  batch_number: string;
+  name: string;
+  passport_number: string;
+  arrival_date: string | null;
+  arrival_time: string | null;
+  departure_date: string | null;
+  departure_time: string | null;
+  airline: string | null;
+  flight_number: string | null;
+  pnr: string | null;
+  departure_airport: string | null;
+  arrival_airport: string | null;
+  notes: string | null;
+  created_at: string;
+};
+
 function AgentPage() {
-  const { country, clients } = Route.useLoaderData();
+  const data = Route.useLoaderData() as {
+    country: { id: string; name: string } | null;
+    clients: Client[];
+  };
+  const { country, clients } = data;
   if (!country) return null;
 
-  const upcoming = clients.filter((c) => {
+  const upcoming = clients.filter((c: Client) => {
     if (!c.arrival_date) return true;
     const arrival = new Date(c.arrival_date + "T" + (c.arrival_time ?? "00:00"));
     return arrival.getTime() >= Date.now() - 24 * 60 * 60 * 1000;
   });
-  const past = clients.filter((c) => !upcoming.includes(c));
+  const past = clients.filter((c: Client) => !upcoming.includes(c));
 
   // Group upcoming by batch
-  const batches = new Map<string, typeof upcoming>();
+  const batches = new Map<string, Client[]>();
   for (const c of upcoming) {
     const list = batches.get(c.batch_number) ?? [];
     list.push(c);
