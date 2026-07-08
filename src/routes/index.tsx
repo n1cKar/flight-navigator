@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { Plane, Upload, Copy, Check, Loader2, Plus, Users } from "lucide-react";
+import { Upload, Copy, Check, Loader2, Plus, Users } from "lucide-react";
+import logoAsset from "@/assets/logo.ico.asset.json";
 
 import { supabase } from "@/integrations/supabase/client";
 import { parseTicketPdf } from "@/lib/clients.functions";
@@ -177,9 +178,7 @@ function AdminPage() {
     <div className="min-h-screen bg-muted/30">
       <header className="border-b bg-background">
         <div className="mx-auto flex max-w-6xl items-center gap-3 px-6 py-5">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-            <Plane className="h-5 w-5" />
-          </div>
+          <img src={logoAsset.url} alt="Daham Lanka logo" className="h-10 w-10 rounded-lg object-contain" />
           <div>
             <h1 className="text-lg font-semibold leading-tight">Daham Lanka (PVT) LTD</h1>
             <p className="text-xs text-muted-foreground">Client flight tracker — admin</p>
