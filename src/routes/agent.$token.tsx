@@ -144,7 +144,7 @@ function AgentPage() {
   );
 }
 
-type Client = ReturnType<typeof Route.useLoaderData>["clients"][number];
+
 
 function ClientCard({ client, muted = false }: { client: Client; muted?: boolean }) {
   return (
