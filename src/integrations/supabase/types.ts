@@ -14,7 +14,92 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clients: {
+        Row: {
+          airline: string | null
+          arrival_airport: string | null
+          arrival_date: string | null
+          arrival_time: string | null
+          batch_number: string
+          country_id: string
+          created_at: string
+          departure_airport: string | null
+          departure_date: string | null
+          departure_time: string | null
+          flight_number: string | null
+          id: string
+          name: string
+          notes: string | null
+          passport_number: string
+          pnr: string | null
+        }
+        Insert: {
+          airline?: string | null
+          arrival_airport?: string | null
+          arrival_date?: string | null
+          arrival_time?: string | null
+          batch_number: string
+          country_id: string
+          created_at?: string
+          departure_airport?: string | null
+          departure_date?: string | null
+          departure_time?: string | null
+          flight_number?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          passport_number: string
+          pnr?: string | null
+        }
+        Update: {
+          airline?: string | null
+          arrival_airport?: string | null
+          arrival_date?: string | null
+          arrival_time?: string | null
+          batch_number?: string
+          country_id?: string
+          created_at?: string
+          departure_airport?: string | null
+          departure_date?: string | null
+          departure_time?: string | null
+          flight_number?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          passport_number?: string
+          pnr?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "clients_country_id_fkey"
+            columns: ["country_id"]
+            isOneToOne: false
+            referencedRelation: "countries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      countries: {
+        Row: {
+          agent_token: string
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          agent_token?: string
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          agent_token?: string
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
