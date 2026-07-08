@@ -113,7 +113,24 @@ export const getAgentView = createServerFn({ method: "GET" })
       .eq("agent_token", data.token)
       .maybeSingle();
     if (cErr) throw new Error(cErr.message);
-    if (!country) return { country: null, clients: [] as Array<Record<string, unknown>> };
+    type ClientRow = {
+      id: string;
+      batch_number: string;
+      name: string;
+      passport_number: string;
+      arrival_date: string | null;
+      arrival_time: string | null;
+      departure_date: string | null;
+      departure_time: string | null;
+      airline: string | null;
+      flight_number: string | null;
+      pnr: string | null;
+      departure_airport: string | null;
+      arrival_airport: string | null;
+      notes: string | null;
+      created_at: string;
+    };
+    if (!country) return { country: null as { id: string; name: string } | null, clients: [] as ClientRow[] };
 
     const { data: clients, error: clErr } = await supabaseAdmin
       .from("clients")
