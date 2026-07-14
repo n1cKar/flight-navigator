@@ -1,0 +1,1 @@
+INSERT INTO public.countries (name) VALUES ('Qatar'), ('Kuwait') ON CONFLICT DO NOTHING;
