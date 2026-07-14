@@ -174,6 +174,25 @@ function AdminPage() {
     setTimeout(() => setCopiedToken(null), 1500);
   }
 
+  async function deleteCountry(c: Country) {
+    if (!window.confirm(`Delete agent link for ${c.name}? This also removes all clients recorded for ${c.name}. This cannot be undone.`)) {
+      return;
+    }
+    const { error: clErr } = await supabase.from("clients").delete().eq("country_id", c.id);
+    if (clErr) {
+      toast.error("Failed to remove clients: " + clErr.message);
+      return;
+    }
+    const { error } = await supabase.from("countries").delete().eq("id", c.id);
+    if (error) {
+      toast.error("Failed to delete country: " + error.message);
+      return;
+    }
+    toast.success(`${c.name} removed`);
+    if (form.country_id === c.id) updateField("country_id", "");
+    loadCountries();
+  }
+
   return (
     <div className="min-h-screen bg-muted/30">
       <header className="border-b bg-background">
