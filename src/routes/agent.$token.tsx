@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Plane, Calendar, Clock, MapPin, User, FileText } from "lucide-react";
-import logoAsset from "@/assets/logo.ico.asset.json";
+import logoAsset from "@/assets/logo.png.asset.json";
 
 import { getAgentView } from "@/lib/clients.functions";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
