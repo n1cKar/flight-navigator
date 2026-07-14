@@ -3,7 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Upload, Copy, Check, Loader2, Plus, Users } from "lucide-react";
-import logoAsset from "@/assets/logo.ico.asset.json";
+import logoAsset from "@/assets/logo.png.asset.json";
 
 import { supabase } from "@/integrations/supabase/client";
 import { parseTicketPdf } from "@/lib/clients.functions";
