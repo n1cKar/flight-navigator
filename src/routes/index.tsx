@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { Upload, Copy, Check, Loader2, Plus, Users } from "lucide-react";
+import { Upload, Copy, Check, Loader2, Plus, Users, Trash2 } from "lucide-react";
 import logoAsset from "@/assets/logo.png.asset.json";
 
 import { supabase } from "@/integrations/supabase/client";
