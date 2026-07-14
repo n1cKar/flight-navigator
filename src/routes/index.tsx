@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
-import { Upload, Copy, Check, Loader2, Plus, Users } from "lucide-react";
+import { Upload, Copy, Check, Loader2, Plus, Users, Trash2 } from "lucide-react";
 import logoAsset from "@/assets/logo.png.asset.json";
 
 import { supabase } from "@/integrations/supabase/client";
@@ -172,6 +172,25 @@ function AdminPage() {
     setCopiedToken(token);
     toast.success("Link copied");
     setTimeout(() => setCopiedToken(null), 1500);
+  }
+
+  async function deleteCountry(c: Country) {
+    if (!window.confirm(`Delete agent link for ${c.name}? This also removes all clients recorded for ${c.name}. This cannot be undone.`)) {
+      return;
+    }
+    const { error: clErr } = await supabase.from("clients").delete().eq("country_id", c.id);
+    if (clErr) {
+      toast.error("Failed to remove clients: " + clErr.message);
+      return;
+    }
+    const { error } = await supabase.from("countries").delete().eq("id", c.id);
+    if (error) {
+      toast.error("Failed to delete country: " + error.message);
+      return;
+    }
+    toast.success(`${c.name} removed`);
+    if (form.country_id === c.id) updateField("country_id", "");
+    loadCountries();
   }
 
   return (
@@ -427,24 +446,36 @@ function AdminPage() {
             )}
             {countries.map((c) => (
               <div key={c.id} className="rounded-md border p-3">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-2">
                   <p className="font-medium">{c.name}</p>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => copyLink(c.agent_token)}
-                  >
-                    {copiedToken === c.agent_token ? (
-                      <>
-                        <Check className="mr-1 h-4 w-4" /> Copied
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="mr-1 h-4 w-4" /> Copy link
-                      </>
-                    )}
-                  </Button>
+                  <div className="flex items-center gap-1">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => copyLink(c.agent_token)}
+                    >
+                      {copiedToken === c.agent_token ? (
+                        <>
+                          <Check className="mr-1 h-4 w-4" /> Copied
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="mr-1 h-4 w-4" /> Copy link
+                        </>
+                      )}
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      aria-label={`Delete ${c.name} link`}
+                      onClick={() => deleteCountry(c)}
+                      className="text-destructive hover:text-destructive"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
                 <p className="mt-1 break-all text-xs text-muted-foreground">
                   {agentUrl(c.agent_token)}
