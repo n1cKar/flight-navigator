@@ -86,7 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon-brand.ico", type: "image/x-icon" },
+      { rel: "icon", type: "image/png", href: "/__l5e/assets-v1/56cfabe6-7bc5-4b35-be1e-b70b058bc92a/daham-lanka-logo.png" },
     ],
   }),
   shellComponent: RootShell,

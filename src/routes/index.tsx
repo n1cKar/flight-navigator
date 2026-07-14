@@ -3,7 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { Upload, Copy, Check, Loader2, Plus, Users } from "lucide-react";
-import logoAsset from "@/assets/logo.ico.asset.json";
+import logoAsset from "@/assets/logo.png.asset.json";
 
 import { supabase } from "@/integrations/supabase/client";
 import { parseTicketPdf } from "@/lib/clients.functions";
@@ -177,11 +177,11 @@ function AdminPage() {
   return (
     <div className="min-h-screen bg-muted/30">
       <header className="border-b bg-background">
-        <div className="mx-auto flex max-w-6xl items-center gap-3 px-6 py-5">
-          <img src={logoAsset.url} alt="Daham Lanka logo" className="h-10 w-10 rounded-lg object-contain" />
-          <div>
-            <h1 className="text-lg font-semibold leading-tight">Daham Lanka (PVT) LTD</h1>
-            <p className="text-xs text-muted-foreground">Client flight tracker — admin</p>
+        <div className="mx-auto flex max-w-6xl items-center gap-4 px-6 py-5">
+          <img src={logoAsset.url} alt="Daham Lanka (PVT) LTD" className="h-12 w-auto object-contain" />
+          <div className="border-l pl-4">
+            <p className="text-xs uppercase tracking-wide text-muted-foreground">Client flight tracker</p>
+            <p className="text-sm font-medium">Admin console</p>
           </div>
         </div>
       </header>

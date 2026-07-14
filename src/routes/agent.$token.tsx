@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Plane, Calendar, Clock, MapPin, User, FileText } from "lucide-react";
-import logoAsset from "@/assets/logo.ico.asset.json";
+import logoAsset from "@/assets/logo.png.asset.json";
 
 import { getAgentView } from "@/lib/clients.functions";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -75,11 +75,11 @@ function AgentPage() {
   return (
     <div className="min-h-screen bg-muted/30">
       <header className="border-b bg-background">
-        <div className="mx-auto flex max-w-5xl items-center gap-3 px-6 py-5">
-          <img src={logoAsset.url} alt="Daham Lanka logo" className="h-10 w-10 rounded-lg object-contain" />
-          <div className="flex-1">
+        <div className="mx-auto flex max-w-5xl items-center gap-4 px-6 py-5">
+          <img src={logoAsset.url} alt="Daham Lanka (PVT) LTD" className="h-12 w-auto object-contain" />
+          <div className="flex-1 border-l pl-4">
             <p className="text-xs uppercase tracking-wide text-muted-foreground">
-              Daham Lanka — arrivals
+              Arrivals
             </p>
             <h1 className="text-lg font-semibold leading-tight">{country.name}</h1>
           </div>
