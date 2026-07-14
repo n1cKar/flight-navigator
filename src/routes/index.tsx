@@ -446,24 +446,36 @@ function AdminPage() {
             )}
             {countries.map((c) => (
               <div key={c.id} className="rounded-md border p-3">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-2">
                   <p className="font-medium">{c.name}</p>
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => copyLink(c.agent_token)}
-                  >
-                    {copiedToken === c.agent_token ? (
-                      <>
-                        <Check className="mr-1 h-4 w-4" /> Copied
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="mr-1 h-4 w-4" /> Copy link
-                      </>
-                    )}
-                  </Button>
+                  <div className="flex items-center gap-1">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => copyLink(c.agent_token)}
+                    >
+                      {copiedToken === c.agent_token ? (
+                        <>
+                          <Check className="mr-1 h-4 w-4" /> Copied
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="mr-1 h-4 w-4" /> Copy link
+                        </>
+                      )}
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      aria-label={`Delete ${c.name} link`}
+                      onClick={() => deleteCountry(c)}
+                      className="text-destructive hover:text-destructive"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
                 <p className="mt-1 break-all text-xs text-muted-foreground">
                   {agentUrl(c.agent_token)}
