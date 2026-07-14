@@ -25,7 +25,7 @@ SUPABASE_URL=https://<your-project>.supabase.co
 SUPABASE_PUBLISHABLE_KEY=<publishable / anon key>
 SUPABASE_SERVICE_ROLE_KEY=<service role key>   # server only
 
-LOVABLE_API_KEY=<AI gateway key for PDF parsing>   # server only
+DAHAM_LANKA_API_KEY=<AI gateway key for PDF parsing>   # server only
 ```
 
 The `VITE_*` variants are bundled into the browser; the unprefixed ones are read only by server functions.
