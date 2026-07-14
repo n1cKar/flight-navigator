@@ -26,8 +26,8 @@ export const parseTicketPdf = createServerFn({ method: "POST" })
     return { pdfBase64: data.pdfBase64, filename: data.filename ?? "ticket.pdf" };
   })
   .handler(async ({ data }) => {
-    const key = process.env.DAHAM_LANKA_API_KEY || process.env.LOVABLE_API_KEY;
-    if (!key) throw new Error("DAHAM_LANKA_API_KEY missing");
+    const key = process.env.LOVABLE_API_KEY || process.env.DAHAM_LANKA_API_KEY;
+    if (!key) throw new Error("LOVABLE_API_KEY missing");
 
     const systemPrompt = `You extract flight ticket information from PDFs.
 Return ONLY a JSON object matching this shape, using null for unknown fields:
