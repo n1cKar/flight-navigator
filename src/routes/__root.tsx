@@ -79,10 +79,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Daham Lanka — Client Flight Tracker" },
       {
         property: "og:description",
-        content: "Record client arrivals and share flight schedules with in-country agents.",
+        content: "Internal system for Daham Lanka (PVT) LTD to record client arrivals and share country-specific flight details with agents.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Daham Lanka — Client Flight Tracker" },
+      { name: "twitter:description", content: "Internal system for Daham Lanka (PVT) LTD to record client arrivals and share country-specific flight details with agents." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d99c153e-cbda-4a4a-b774-a0bd52bbb25b/id-preview-624f3c04--a0b1ab29-62d3-4dfa-b501-9e7cc0846caf.lovable.app-1784021482146.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d99c153e-cbda-4a4a-b774-a0bd52bbb25b/id-preview-624f3c04--a0b1ab29-62d3-4dfa-b501-9e7cc0846caf.lovable.app-1784021482146.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
